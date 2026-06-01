@@ -72,6 +72,40 @@ function getApiErrorMessage(error, fallbackMessage = "Request gagal.") {
   return error?.message || fallbackMessage;
 }
 
+function isSessionErrorMessage(message = "") {
+  const text = String(message || "").toLowerCase();
+
+  return (
+    text.includes("sesi login tidak valid") ||
+    text.includes("sesi login sudah berakhir") ||
+    text.includes("silakan login ulang") ||
+    text.includes("session")
+  );
+}
+
+function handleExpiredSession(
+  message = "Sesi login berakhir. Silakan login ulang.",
+) {
+  if (typeof clearCurrentUser === "function") {
+    clearCurrentUser();
+  }
+
+  localStorage.removeItem("activePage");
+
+  if (typeof showLoginPage === "function") {
+    showLoginPage();
+  }
+
+  if (typeof Swal !== "undefined") {
+    Swal.fire({
+      icon: "warning",
+      title: "Sesi Berakhir",
+      text: message,
+      confirmButtonText: "Login Ulang",
+    });
+  }
+}
+
 async function parseApiJsonResponse(response) {
   try {
     return await response.json();
@@ -169,6 +203,10 @@ async function apiPost(action, payload = {}) {
     const message = getApiErrorMessage(error);
 
     console.error(`apiPost error [${action}]:`, error);
+
+    if (isSessionErrorMessage(message)) {
+      handleExpiredSession(message);
+    }
 
     throw new Error(message);
   } finally {
