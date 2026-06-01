@@ -5,8 +5,9 @@
    Fungsi:
    - Membuat request GET/POST ke Apps Script.
    - Menangani error HTTP, error backend, dan timeout.
+   - Mengirim auth session untuk action yang butuh login.
    - Menyediakan helper API untuk data, login, progress,
-     settings, dan generate log.
+     settings, generate log, dan manajemen akun.
 ========================================================= */
 
 const API_CONFIG = {
@@ -92,6 +93,24 @@ function validateApiResult(result) {
 }
 
 /* =========================================================
+   AUTH PAYLOAD
+   Catatan:
+   - Backend secure membutuhkan userId dan sessionToken.
+   - sessionToken didapat dari response login.
+   - Pastikan auth.js menyimpan user lengkap termasuk sessionToken.
+========================================================= */
+
+function getApiAuthPayload() {
+  const currentUser =
+    typeof getCurrentUser === "function" ? getCurrentUser() : null;
+
+  return {
+    userId: currentUser?.id || "",
+    sessionToken: currentUser?.sessionToken || "",
+  };
+}
+
+/* =========================================================
    CORE REQUEST
 ========================================================= */
 
@@ -133,6 +152,7 @@ async function apiPost(action, payload = {}) {
       },
       body: JSON.stringify({
         action,
+        auth: getApiAuthPayload(),
         ...payload,
       }),
       signal: controller.signal,
@@ -181,6 +201,12 @@ async function loginUserApi(email, password) {
   }
 
   return result.user;
+}
+
+async function logoutUserApi() {
+  const result = await apiPost("logout");
+
+  return result;
 }
 
 /* =========================================================
@@ -243,4 +269,51 @@ async function saveGenerateLogApi(log) {
   });
 
   return result.log || log;
+}
+
+/* =========================================================
+   USER MANAGEMENT API
+========================================================= */
+
+async function createUserApi(user) {
+  if (!user || typeof user !== "object") {
+    throw new Error("Payload user tidak valid.");
+  }
+
+  const result = await apiPost("createUser", {
+    user,
+  });
+
+  return result.user || user;
+}
+
+async function updateUserApi(user) {
+  if (!user || typeof user !== "object") {
+    throw new Error("Payload user tidak valid.");
+  }
+
+  const result = await apiPost("updateUser", {
+    user,
+  });
+
+  return result.user || user;
+}
+
+/* =========================================================
+   SOFT DELETE USER API
+   Catatan:
+   - Backend tidak menghapus baris user.
+   - Backend hanya mengubah isActive menjadi FALSE.
+========================================================= */
+
+async function deleteUserApi(userId) {
+  if (!userId) {
+    throw new Error("ID user tidak valid.");
+  }
+
+  const result = await apiPost("deleteUser", {
+    userId,
+  });
+
+  return result.user || { id: userId, isActive: false };
 }

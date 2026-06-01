@@ -197,8 +197,17 @@ function initAuth() {
 
 /**
  * Logout user.
+ * Menghapus session backend dan session lokal.
  */
-function logoutUser() {
+async function logoutUser() {
+  try {
+    if (typeof logoutUserApi === "function") {
+      await logoutUserApi();
+    }
+  } catch (error) {
+    console.warn("Logout backend gagal:", error);
+  }
+
   clearCurrentUser();
   localStorage.removeItem("activePage");
 

@@ -1,0 +1,245 @@
+<div class="page-view account-page" data-view="akun">
+  <div class="page-title page-title-action">
+    <div>
+      <p class="eyebrow">Admin</p>
+      <h2>Manajemen Akun</h2>
+      <p>Kelola akun admin dan guru yang dapat mengakses aplikasi.</p>
+    </div>
+
+    <div class="page-title-actions">
+      <button class="btn-primary" id="openAccountModalButton" type="button">
+        Tambah Akun
+      </button>
+    </div>
+  </div>
+
+  <div class="stat-grid account-stat-grid">
+    <div class="stat-card">
+      <p>Total Akun</p>
+      <h3 id="accountTotalUser">0</h3>
+      <span>Semua akun terdaftar</span>
+    </div>
+
+    <div class="stat-card">
+      <p>Admin</p>
+      <h3 id="accountTotalAdmin">0</h3>
+      <span>Akun pengelola aplikasi</span>
+    </div>
+
+    <div class="stat-card">
+      <p>Guru</p>
+      <h3 id="accountTotalTeacher">0</h3>
+      <span>Akun guru halaqoh</span>
+    </div>
+
+    <div class="stat-card">
+      <p>Aktif</p>
+      <h3 id="accountTotalActive">0</h3>
+      <span>Akun yang dapat login</span>
+    </div>
+  </div>
+
+  <div class="filter-card account-filter-card">
+    <div class="field">
+      <label for="accountRoleFilter">Role</label>
+      <select id="accountRoleFilter">
+        <option value="all">Semua Role</option>
+        <option value="admin">Admin</option>
+        <option value="guru">Guru</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="accountStatusFilter">Status</label>
+      <select id="accountStatusFilter">
+        <option value="all">Semua Status</option>
+        <option value="active">Aktif</option>
+        <option value="inactive">Nonaktif</option>
+      </select>
+    </div>
+
+    <div class="field account-search-field">
+      <label for="accountSearchInput">Cari Akun</label>
+      <input
+        id="accountSearchInput"
+        type="search"
+        placeholder="Cari nama atau email..."
+      />
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-header">
+      <div>
+        <h3>Daftar Akun</h3>
+        <p>Daftar akun admin dan guru yang terdaftar di aplikasi.</p>
+      </div>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Kelas</th>
+            <th>Halaqoh</th>
+            <th>Permission</th>
+            <th>Status</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+
+        <tbody id="accountTableBody">
+          <tr>
+            <td colspan="8">
+              <div class="empty-state">Belum ada data akun.</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="accountModalOverlay" aria-hidden="true">
+    <div
+      class="modal-card account-modal-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="accountModalTitle"
+    >
+      <div class="modal-header">
+        <div>
+          <h3 id="accountModalTitle">Tambah Akun</h3>
+          <p id="accountModalSubtitle">Buat akun baru untuk admin atau guru.</p>
+        </div>
+
+        <button
+          class="modal-close"
+          id="accountModalClose"
+          type="button"
+          aria-label="Tutup modal"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18 18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <form class="modal-form" id="accountForm">
+        <input type="hidden" id="accountUserId" />
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="accountName">Nama Lengkap</label>
+            <input
+              id="accountName"
+              type="text"
+              placeholder="Contoh: Ustadz Amir"
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="field">
+            <label for="accountEmail">Email</label>
+            <input
+              id="accountEmail"
+              type="email"
+              placeholder="Contoh: guru@nurhikmah.sch.id"
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="field">
+            <label for="accountRole">Role</label>
+            <select id="accountRole">
+              <option value="guru">Guru</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="accountDefaultPage">Halaman Awal</label>
+            <select id="accountDefaultPage">
+              <option value="dashboard">Dashboard</option>
+              <option value="input">Input Capaian</option>
+              <option value="input-massal">Input Massal</option>
+              <option value="preview">Preview Rapor</option>
+              <option value="pdf">Generate File</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid" id="accountTeacherFields">
+          <div class="field">
+            <label for="accountClassId">Kelas</label>
+            <select id="accountClassId"></select>
+          </div>
+
+          <div class="field">
+            <label for="accountHalaqohId">Halaqoh</label>
+            <select id="accountHalaqohId"></select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="accountPassword">Password Awal</label>
+          <input
+            id="accountPassword"
+            type="password"
+            placeholder="Isi untuk akun baru. Kosongkan jika tidak ingin mengganti password."
+            autocomplete="new-password"
+          />
+        </div>
+
+        <div class="account-permission-grid">
+          <label class="account-check-card">
+            <input id="accountCanEditSettings" type="checkbox" />
+            <span>
+              <strong>Edit Pengaturan</strong>
+              <small>Boleh mengubah pengaturan aplikasi.</small>
+            </span>
+          </label>
+
+          <label class="account-check-card">
+            <input id="accountCanEditMasterData" type="checkbox" />
+            <span>
+              <strong>Edit Data Master</strong>
+              <small>Boleh mengubah data kelas, halaqoh, dan siswa.</small>
+            </span>
+          </label>
+
+          <label class="account-check-card">
+            <input id="accountCanGenerateFile" type="checkbox" checked />
+            <span>
+              <strong>Generate File</strong>
+              <small>Boleh membuat PDF dan Excel.</small>
+            </span>
+          </label>
+
+          <label class="account-check-card">
+            <input id="accountIsActive" type="checkbox" checked />
+            <span>
+              <strong>Akun Aktif</strong>
+              <small>Akun dapat digunakan untuk login.</small>
+            </span>
+          </label>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-secondary" id="accountModalCancel" type="button">
+            Batal
+          </button>
+
+          <button class="btn-primary" type="submit">Simpan Akun</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

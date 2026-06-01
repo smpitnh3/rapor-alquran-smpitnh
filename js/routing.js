@@ -18,6 +18,10 @@ const pageMeta = {
     subtitle:
       "Kelola identitas sekolah, tahun ajaran, periode, dan konfigurasi aplikasi.",
   },
+  akun: {
+    title: "Manajemen Akun",
+    subtitle: "Kelola akun admin dan guru yang dapat mengakses aplikasi.",
+  },
   kelas: {
     title: "Kelas & Halaqoh",
     subtitle: "Kelola data kelas, halaqoh, dan guru pengampu.",

@@ -1,0 +1,130 @@
+/* =========================================================
+   MANAJEMEN AKUN PAGE
+   Fungsi:
+   - Mengatur halaman daftar akun.
+   - Mengatur modal tambah/edit akun.
+========================================================= */
+
+.account-filter-card {
+  grid-template-columns: minmax(150px, 0.7fr) minmax(150px, 0.7fr) minmax(
+      220px,
+      1.6fr
+    );
+}
+
+.account-search-field {
+  min-width: 0;
+}
+
+.account-stat-grid {
+  margin-bottom: 18px;
+}
+
+.account-modal-card {
+  width: min(860px, calc(100vw - 40px));
+}
+
+.account-permission-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.account-check-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 13px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md, 14px);
+  background: var(--surface-soft);
+  cursor: pointer;
+}
+
+.account-check-card input {
+  width: 17px;
+  height: 17px;
+  margin-top: 2px;
+  accent-color: var(--brand-green);
+}
+
+.account-check-card strong {
+  display: block;
+  color: var(--text-strong, var(--text));
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.account-check-card small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.account-permission-list {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.account-action-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.account-action-danger {
+  color: var(--danger);
+}
+
+.account-action-danger:hover {
+  background: var(--danger-soft);
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.account-action-success {
+  color: var(--success);
+}
+
+.account-action-success:hover {
+  background: var(--success-soft);
+  color: var(--success);
+  border-color: var(--success);
+}
+
+@media (max-width: 1180px) {
+  .account-filter-card {
+    grid-template-columns: repeat(2, minmax(160px, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .account-modal-card {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  .account-permission-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .account-action-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .account-action-group .table-action-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 620px) {
+  .account-filter-card {
+    grid-template-columns: 1fr;
+  }
+}

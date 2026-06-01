@@ -220,6 +220,10 @@ function refreshAllPageData() {
   if (typeof renderPdfHistory === "function") {
     renderPdfHistory();
   }
+
+  if (typeof renderAccountPage === "function") {
+    renderAccountPage();
+  }
 }
 
 /* =========================================================
@@ -247,6 +251,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   initProgressModal();
   initPreviewPage();
   initPdfPage();
+
+  if (typeof initAccountManagementPage === "function") {
+    initAccountManagementPage();
+  }
 
   initAuth();
   initAuthLogoutButtons();

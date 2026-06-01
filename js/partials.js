@@ -41,6 +41,12 @@ const HTML_PARTIALS = [
     target: '[data-view="pengaturan"]',
   },
   {
+    selector: "#manajemenAkunPagePartial",
+    url: "partials/manajemen-akun.partial",
+    mode: "replace",
+    target: '[data-view="akun"]',
+  },
+  {
     selector: "#kelasHalaqohPagePartial",
     url: "partials/kelas-halaqoh.partial",
     mode: "replace",
