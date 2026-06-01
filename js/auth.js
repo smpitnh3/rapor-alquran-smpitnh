@@ -1,9 +1,13 @@
 /* =========================================================
    AUTH.JS
-   Login, session user, dan akses role.
+   Login, session user, akses role, dan UI login.
 ========================================================= */
 
 const AUTH_STORAGE_KEY = "rapor_current_user";
+
+/* =========================================================
+   CURRENT USER SESSION
+========================================================= */
 
 /**
  * Ambil user yang sedang login dari localStorage.
@@ -39,7 +43,7 @@ function clearCurrentUser() {
  * Cek apakah user sudah login.
  */
 function isLoggedIn() {
-  return !!getCurrentUser();
+  return Boolean(getCurrentUser());
 }
 
 /**
@@ -47,6 +51,7 @@ function isLoggedIn() {
  */
 function getCurrentUserRole() {
   const user = getCurrentUser();
+
   return user?.role || null;
 }
 
@@ -63,6 +68,10 @@ function isAdminUser() {
 function isGuruUser() {
   return getCurrentUserRole() === "guru";
 }
+
+/* =========================================================
+   LOGIN
+========================================================= */
 
 /**
  * Login user ke backend.
@@ -182,9 +191,12 @@ function navigateToPageById(pageId) {
 function initAuth() {
   const loginForm = document.querySelector("#loginForm");
 
-  if (loginForm) {
+  if (loginForm && loginForm.dataset.initialized !== "true") {
+    loginForm.dataset.initialized = "true";
     loginForm.addEventListener("submit", handleLoginSubmit);
   }
+
+  initLoginPasswordToggle();
 
   const user = getCurrentUser();
 
@@ -194,6 +206,10 @@ function initAuth() {
     showLoginPage();
   }
 }
+
+/* =========================================================
+   LOGOUT
+========================================================= */
 
 /**
  * Logout user.
@@ -232,6 +248,10 @@ function initAuthLogoutButtons() {
   const logoutButtons = document.querySelectorAll("[data-logout]");
 
   logoutButtons.forEach((button) => {
+    if (button.dataset.initialized === "true") return;
+
+    button.dataset.initialized = "true";
+
     button.addEventListener("click", (event) => {
       event.preventDefault();
 
@@ -251,6 +271,10 @@ function initAuthLogoutButtons() {
   });
 }
 
+/* =========================================================
+   CURRENT USER UI
+========================================================= */
+
 /**
  * Update tampilan nama user.
  */
@@ -269,38 +293,65 @@ function updateCurrentUserInfo(user = getCurrentUser()) {
   });
 }
 
-/**
- * Filter default untuk guru.
- * Nanti disesuaikan dengan ID select di halaman input capaian.
- */
-function applyGuruDefaultFilter(user = getCurrentUser()) {
-  if (!user || user.role !== "guru") return;
+function getUserRoleLabel(user) {
+  if (!user) return "-";
 
-  if (typeof applyInputPageRoleDefault === "function") {
-    applyInputPageRoleDefault();
-  }
+  if (user.role === "admin") return "Admin";
+  if (user.role === "guru") return "Guru Al-Qur’an";
 
-  if (typeof populateInputFilters === "function") {
-    populateInputFilters();
-  }
-
-  if (typeof renderInputProgressTable === "function") {
-    renderInputProgressTable();
-  }
+  return user.role || "-";
 }
+
+function getUserInitial(user) {
+  const name = user?.name || user?.email || "A";
+
+  return String(name).trim().charAt(0).toUpperCase();
+}
+
+function renderCurrentUserInfo() {
+  if (typeof getCurrentUser !== "function") return;
+
+  const user = getCurrentUser();
+
+  if (!user) return;
+
+  const name = user.name || user.email || "Pengguna";
+  const email = user.email || "-";
+  const roleLabel = getUserRoleLabel(user);
+  const initial = getUserInitial(user);
+
+  setText("#accountMenuName", name);
+  setText("#accountDropdownName", name);
+  setText("#accountDropdownEmail", email);
+  setText("#accountDropdownRole", roleLabel);
+
+  setText("#mobileAccountName", name);
+  setText("#mobileAccountEmail", email);
+  setText("#mobileAccountRole", roleLabel);
+
+  setText("#accountMenuAvatar", initial);
+  setText("#mobileAccountAvatar", initial);
+}
+
+/* =========================================================
+   ROLE ACCESS
+========================================================= */
 
 function canEditSettings() {
   const user = getCurrentUser();
+
   return user?.canEditSettings === true;
 }
 
 function canEditMasterData() {
   const user = getCurrentUser();
+
   return user?.canEditMasterData === true;
 }
 
 function canGenerateFile() {
   const user = getCurrentUser();
+
   return user?.canGenerateFile === true;
 }
 
@@ -349,42 +400,110 @@ function hideAdminOnlyMenus() {
   });
 }
 
-function getUserRoleLabel(user) {
-  if (!user) return "-";
+/* =========================================================
+   GURU DEFAULT FILTER
+========================================================= */
 
-  if (user.role === "admin") return "Admin";
-  if (user.role === "guru") return "Guru Al-Qur’an";
+/**
+ * Filter default untuk guru.
+ */
+function applyGuruDefaultFilter(user = getCurrentUser()) {
+  if (!user || user.role !== "guru") return;
 
-  return user.role || "-";
+  if (typeof applyInputPageRoleDefault === "function") {
+    applyInputPageRoleDefault();
+  }
+
+  if (typeof populateInputFilters === "function") {
+    populateInputFilters();
+  }
+
+  if (typeof renderInputProgressTable === "function") {
+    renderInputProgressTable();
+  }
 }
 
-function getUserInitial(user) {
-  const name = user?.name || user?.email || "A";
+/* =========================================================
+   LOGIN PASSWORD TOGGLE
+========================================================= */
 
-  return String(name).trim().charAt(0).toUpperCase();
-}
+function initLoginPasswordToggle() {
+  const passwordInput = document.querySelector("#loginPassword");
+  const toggleButton = document.querySelector("#toggleLoginPassword");
 
-function renderCurrentUserInfo() {
-  if (typeof getCurrentUser !== "function") return;
+  if (!passwordInput || !toggleButton) return;
+  if (toggleButton.dataset.initialized === "true") return;
 
-  const user = getCurrentUser();
+  toggleButton.dataset.initialized = "true";
 
-  if (!user) return;
+  const eyeIcon = `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.8"
+        d="M2.25 12s3.75-6.75 9.75-6.75S21.75 12 21.75 12 18 18.75 12 18.75 2.25 12 2.25 12Z"
+      />
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.8"
+        d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+      />
+    </svg>
+  `;
 
-  const name = user.name || user.email || "Pengguna";
-  const email = user.email || "-";
-  const roleLabel = getUserRoleLabel(user);
-  const initial = getUserInitial(user);
+  const eyeOffIcon = `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.8"
+        d="M3 3l18 18"
+      />
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.8"
+        d="M10.58 10.58A2 2 0 0 0 13.42 13.42"
+      />
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.8"
+        d="M9.88 5.42A9.77 9.77 0 0 1 12 5.25c6 0 9.75 6.75 9.75 6.75a16.32 16.32 0 0 1-3.15 3.84"
+      />
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.8"
+        d="M6.53 6.53C3.75 8.45 2.25 12 2.25 12S6 18.75 12 18.75c1.42 0 2.74-.37 3.93-.95"
+      />
+    </svg>
+  `;
 
-  setText("#accountMenuName", name);
-  setText("#accountDropdownName", name);
-  setText("#accountDropdownEmail", email);
-  setText("#accountDropdownRole", roleLabel);
+  function setPasswordVisible(isVisible) {
+    passwordInput.type = isVisible ? "text" : "password";
 
-  setText("#mobileAccountName", name);
-  setText("#mobileAccountEmail", email);
-  setText("#mobileAccountRole", roleLabel);
+    toggleButton.setAttribute("aria-pressed", String(isVisible));
+    toggleButton.setAttribute(
+      "aria-label",
+      isVisible ? "Sembunyikan password" : "Tampilkan password",
+    );
 
-  setText("#accountMenuAvatar", initial);
-  setText("#mobileAccountAvatar", initial);
+    const iconContainer = toggleButton.querySelector(".login-eye-icon");
+
+    if (iconContainer) {
+      iconContainer.innerHTML = isVisible ? eyeOffIcon : eyeIcon;
+    }
+  }
+
+  toggleButton.addEventListener("click", () => {
+    const isVisible = passwordInput.type === "text";
+
+    setPasswordVisible(!isVisible);
+    passwordInput.focus();
+  });
+
+  setPasswordVisible(false);
 }
