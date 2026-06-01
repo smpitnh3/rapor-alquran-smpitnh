@@ -1,0 +1,59 @@
+/* =========================================================
+   KELAS & HALAQOH PAGE
+   Fungsi:
+   - Mengatur layout dua panel kelas dan halaqoh.
+   - Menjaga tabel tetap bisa scroll horizontal di layar kecil.
+========================================================= */
+
+.class-halaqoh-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 22px;
+  align-items: start;
+  min-width: 0;
+}
+
+.class-halaqoh-grid .panel {
+  min-width: 0;
+}
+
+.class-halaqoh-grid .table-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.class-halaqoh-grid .table-wrapper table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+}
+
+@media (max-width: 1180px) {
+  .class-halaqoh-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .class-halaqoh-grid .panel-header {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .class-halaqoh-grid .panel-header .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .class-halaqoh-grid .table-wrapper {
+    margin-top: 12px;
+    padding-bottom: 8px;
+  }
+
+  .class-halaqoh-grid .table-wrapper table {
+    min-width: 760px;
+  }
+}

@@ -1,0 +1,130 @@
+<div class="page-view" data-view="pengaturan">
+  <div class="page-title page-title-action">
+    <div>
+      <p class="eyebrow">Data Utama</p>
+      <h2>Pengaturan</h2>
+      <p>
+        Kelola identitas sekolah, periode aktif, dan nilai default yang
+        digunakan saat membuat capaian baru.
+      </p>
+    </div>
+
+    <button class="btn-primary" id="saveSettingsButton" type="button" data-settings-only>
+      Simpan Pengaturan
+    </button>
+  </div>
+
+  <section class="settings-grid">
+    <article class="panel">
+      <div class="panel-header compact">
+        <div>
+          <h3>Identitas Sekolah</h3>
+          <p>Informasi dasar yang tampil di aplikasi dan dokumen rapor.</p>
+        </div>
+      </div>
+
+      <div class="settings-form">
+        <div class="field">
+          <label>Nama Sekolah</label>
+          <input id="settingSchoolName" type="text" value="SMPIT Nur Hikmah" />
+        </div>
+
+        <div class="field">
+          <label>Nama Aplikasi</label>
+          <input id="settingAppName" type="text" value="Rapor Al-Qur’an" />
+        </div>
+
+        <div class="field">
+          <label>Alamat / Wilayah</label>
+          <input id="settingSchoolAddress" type="text" value="Bekasi" />
+        </div>
+
+        <div class="field">
+          <label>Email Admin</label>
+          <input
+            id="settingAdminEmail"
+            type="email"
+            value="admin@nurhikmah.sch.id"
+          />
+        </div>
+      </div>
+    </article>
+
+    <article class="panel">
+      <div class="panel-header compact">
+        <div>
+          <h3>Tahun Ajaran & Periode</h3>
+          <p>
+            Periode aktif menjadi acuan bulan laporan, dashboard, input capaian,
+            preview, dan generate file.
+          </p>
+        </div>
+      </div>
+
+      <div class="settings-form">
+        <div class="field">
+          <label>Tahun Ajaran Aktif</label>
+          <select id="settingAcademicYear"></select>
+        </div>
+
+        <div class="field">
+          <label>Periode Aktif</label>
+          <select id="settingActivePeriod"></select>
+        </div>
+
+        <div class="field">
+          <label>Semester Rapor</label>
+          <select id="settingSemesterLabel">
+            <option value="SEMESTER I">SEMESTER I</option>
+            <option value="SEMESTER II">SEMESTER II</option>
+          </select>
+        </div>
+      </div>
+    </article>
+
+    <article class="panel panel-wide settings-full">
+      <div class="panel-header">
+        <div>
+          <h3>Default Template Laporan</h3>
+          <p>
+            Nilai berikut akan otomatis terisi saat guru membuat capaian baru.
+          </p>
+        </div>
+      </div>
+
+      <div class="settings-template-grid">
+        <div class="field">
+          <label>Target Ziyadah</label>
+          <input id="settingTargetZiyadah" type="text" value="10 halaman" />
+        </div>
+
+        <div class="field">
+          <label>Target Murojaah</label>
+          <input id="settingTargetMurojaah" type="text" value="20 halaman" />
+        </div>
+
+        <div class="field">
+          <label>Hari Efektif</label>
+          <input id="settingEffectiveDays" type="number" min="0" value="20" />
+        </div>
+
+        <div class="settings-info-box">
+          <strong>Catatan penanggung jawab</strong>
+          <p>
+            Wali kelas diambil dari data kelas. Guru Al-Qur’an diambil dari data
+            halaqoh masing-masing siswa.
+          </p>
+        </div>
+
+        <div class="field">
+          <label>Tempat, Tanggal Titimangsa</label>
+          <input
+            id="settingReportPlaceDate"
+            type="text"
+            value="Bekasi, 26 Juni 2025"
+          />
+        </div>
+      </div>
+    </article>
+  </section>
+</div>

@@ -1,0 +1,110 @@
+<div class="page-view active" data-view="dashboard">
+  <div class="page-title">
+    <div>
+      <p class="eyebrow">Rapor Al-Qur’an SMPIT Nur Hikmah</p>
+      <h2>Ahlan, Ustadz/Ustadzah!</h2>
+      <p>
+        Pantau kelengkapan input capaian Al-Qur’an siswa berdasarkan periode,
+        kelas, dan halaqoh.
+      </p>
+    </div>
+
+    <!-- <div class="date-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6.75 3v2.25M17.25 3v2.25M3.75 9h16.5M4.5 6.75h15A1.5 1.5 0 0 1 21 8.25v10.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.75V8.25a1.5 1.5 0 0 1 1.5-1.5Z" />
+            </svg>
+            <span>Rabu, 20 Mei 2026</span>
+          </div> -->
+  </div>
+
+  <section class="filter-card">
+    <div class="field">
+      <label>Tahun Ajaran</label>
+      <select id="filterYear"></select>
+    </div>
+
+    <div class="field">
+      <label>Periode</label>
+      <select id="filterPeriod"></select>
+    </div>
+
+    <div class="field">
+      <label>Kelas</label>
+      <select id="filterClass"></select>
+    </div>
+
+    <div class="field">
+      <label>Halaqoh</label>
+      <select id="filterHalaqoh"></select>
+    </div>
+  </section>
+
+  <section class="stat-grid">
+    <article class="stat-card">
+      <p>Total Siswa</p>
+      <h3 id="statTotalStudents">0</h3>
+      <span>Aktif pada filter ini</span>
+    </article>
+
+    <article class="stat-card">
+      <p>Sudah Input</p>
+      <h3 id="statCompleted">0</h3>
+      <span>Data capaian terisi</span>
+    </article>
+
+    <article class="stat-card">
+      <p>Capaian Tuntas</p>
+      <h3 id="statCompletedProgress">0</h3>
+      <span>Tuntas Hafalan, murojaah, dan kedisiplinan</span>
+    </article>
+
+    <article class="stat-card">
+      <p>Belum Input / Perlu Cek</p>
+      <h3 id="statAttention">0</h3>
+      <span>Belum input atau perlu perhatian</span>
+    </article>
+  </section>
+
+  <section class="dashboard-grid">
+    <article class="panel panel-wide">
+      <div class="panel-header">
+        <div>
+          <h3>Ringkasan Halaqoh</h3>
+          <p>Monitoring kelengkapan input berdasarkan kelas dan halaqoh.</p>
+        </div>
+        <button class="btn-primary" id="goInputPage" type="button">
+          Input Capaian
+        </button>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Halaqoh</th>
+              <th>Kelas</th>
+              <th>Guru Pengampu</th>
+              <th>Jumlah Siswa</th>
+              <th>Sudah Input</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="halaqohSummaryBody"></tbody>
+        </table>
+      </div>
+    </article>
+
+    <aside class="side-stack">
+      <article class="panel">
+        <div class="panel-header compact">
+          <div>
+            <h3>Perlu Ditindaklanjuti</h3>
+            <p>Siswa yang belum diinput atau membutuhkan pendampingan.</p>
+          </div>
+        </div>
+
+        <div id="attentionList" class="attention-list"></div>
+      </article>
+    </aside>
+  </section>
+</div>

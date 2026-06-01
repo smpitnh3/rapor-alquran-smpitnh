@@ -1,0 +1,73 @@
+<div class="page-view" data-view="siswa">
+  <div class="page-title">
+    <div>
+      <p class="eyebrow">Data Utama</p>
+      <h2>Data Siswa</h2>
+      <p>Kelola dan pantau data siswa berdasarkan kelas dan halaqoh.</p>
+    </div>
+  </div>
+
+  <section class="filter-card">
+    <div class="field">
+      <label>Cari Siswa</label>
+      <input
+        id="studentSearch"
+        type="text"
+        placeholder="Cari nama siswa atau NIS..."
+      />
+    </div>
+
+    <div class="field">
+      <label>Kelas</label>
+      <select id="studentFilterClass"></select>
+    </div>
+
+    <div class="field">
+      <label>Halaqoh</label>
+      <select id="studentFilterHalaqoh"></select>
+    </div>
+
+    <div class="field">
+      <label>Status</label>
+      <select id="studentFilterStatus">
+        <option value="all">Semua Status</option>
+        <option value="Aktif">Aktif</option>
+        <option value="Tidak Aktif">Tidak Aktif</option>
+      </select>
+    </div>
+  </section>
+
+  <article class="panel panel-wide">
+    <div class="panel-header">
+      <div>
+        <h3>Daftar Siswa</h3>
+        <p>Daftar siswa berdasarkan filter kelas, halaqoh, dan status.</p>
+      </div>
+
+      <button
+        class="btn-primary btn-manage-sheet"
+        id="openStudentSheetButton"
+        type="button"
+        data-master-only
+      >
+        Kelola
+      </button>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>NIS</th>
+            <th>Nama Siswa</th>
+            <th>Kelas</th>
+            <th>Halaqoh</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody id="studentTableBody"></tbody>
+      </table>
+    </div>
+  </article>
+</div>

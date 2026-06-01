@@ -1,0 +1,134 @@
+/* =========================
+   DESIGN TOKENS
+   Fungsi:
+   - Menyimpan warna, radius, shadow, ukuran layout, dan token global.
+   - Menjadi sumber utama tema light/dark.
+========================= */
+
+:root {
+  /* Brand */
+  --brand-green: #0b6b2a;
+  --brand-green-dark: #06451d;
+  --brand-green-soft: #eef8f1;
+  --brand-gold: #c8a734;
+
+  /* Base colors */
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --surface-soft: #f9fafb;
+  --surface-muted: #f3f4f6;
+
+  --text: #1f2937;
+  --text-strong: #111827;
+  --text-inverse: #ffffff;
+  --muted: #7b8494;
+  --muted-strong: #64748b;
+
+  --border: #e6e8ee;
+  --border-strong: #d8dce5;
+
+  /* State colors */
+  --success: #15803d;
+  --success-soft: #dcfce7;
+
+  --warning: #c2410c;
+  --warning-soft: #ffedd5;
+
+  --danger: #b91c1c;
+  --danger-soft: #fee2e2;
+
+  --info: #2563eb;
+  --info-soft: #dbeafe;
+
+  /* Effects */
+  --overlay: rgba(15, 23, 42, 0.45);
+
+  --shadow-sm: 0 4px 14px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 10px 28px rgba(15, 23, 42, 0.07);
+  --shadow-lg: 0 18px 60px rgba(15, 23, 42, 0.18);
+
+  --focus-ring: 0 0 0 4px rgba(11, 107, 42, 0.14);
+
+  /* Radius */
+  --radius-xl: 22px;
+  --radius-lg: 18px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --radius-xs: 8px;
+  --radius-full: 999px;
+
+  /* Layout */
+  --sidebar-width: 272px;
+  --sidebar-collapsed-width: 84px;
+  --topbar-height: 72px;
+  --content-max-width: 1280px;
+
+  /* Spacing */
+  --page-padding: 28px;
+  --card-padding: 22px;
+
+  /* Typography */
+  --font-main: "Poppins", Arial, sans-serif;
+
+  /* Transitions */
+  --transition-fast: 0.16s ease;
+  --transition-base: 0.22s ease;
+
+  /* Z-index */
+  --z-sidebar: 40;
+  --z-topbar: 50;
+  --z-overlay: 80;
+  --z-modal: 90;
+  --z-toast: 100;
+
+  /* Native select arrow */
+  --select-arrow: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%237b8494' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+[data-theme="dark"] {
+  /* Brand */
+  --brand-green: #22c55e;
+  --brand-green-dark: #16a34a;
+  --brand-green-soft: rgba(34, 197, 94, 0.14);
+  --brand-gold: #d6b84a;
+
+  /* Base colors */
+  --bg: #0f172a;
+  --surface: #111827;
+  --surface-soft: #172033;
+  --surface-muted: #1f2937;
+
+  --text: #f8fafc;
+  --text-strong: #ffffff;
+  --text-inverse: #0f172a;
+  --muted: #e5e7eb;
+  --muted-strong: #cbd5e1;
+
+  --border: #263244;
+  --border-strong: #334155;
+
+  /* State colors */
+  --success: #22c55e;
+  --success-soft: rgba(34, 197, 94, 0.16);
+
+  --warning: #f59e0b;
+  --warning-soft: rgba(245, 158, 11, 0.16);
+
+  --danger: #f87171;
+  --danger-soft: rgba(248, 113, 113, 0.16);
+
+  --info: #60a5fa;
+  --info-soft: rgba(96, 165, 250, 0.16);
+
+  /* Effects */
+  --overlay: rgba(2, 6, 23, 0.68);
+
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.22);
+  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.32);
+  --shadow-lg: 0 18px 60px rgba(0, 0, 0, 0.45);
+
+  --focus-ring: 0 0 0 4px rgba(34, 197, 94, 0.22);
+
+  /* Native select arrow */
+  --select-arrow: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}

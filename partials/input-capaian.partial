@@ -1,0 +1,75 @@
+<div class="page-view" data-view="input">
+  <div class="page-title page-title-action">
+    <div>
+      <p class="eyebrow">Rapor Al-Qur’an</p>
+      <h2>Input Capaian</h2>
+      <p>
+        Kelola capaian hafalan, tahsin, status, dan catatan perkembangan siswa.
+      </p>
+    </div>
+
+    <div class="page-title-actions">
+      <button class="btn-primary" id="openBulkInputPage" type="button">
+        Input Massal
+      </button>
+    </div>
+  </div>
+
+  <section class="filter-card input-filter-card">
+    <div class="field">
+      <label>Tahun Ajaran</label>
+      <select id="inputFilterYear"></select>
+    </div>
+
+    <div class="field">
+      <label>Periode</label>
+      <select id="inputFilterPeriod"></select>
+    </div>
+
+    <div class="field">
+      <label>Kelas</label>
+      <select id="inputFilterClass"></select>
+    </div>
+
+    <div class="field">
+      <label>Halaqoh</label>
+      <select id="inputFilterHalaqoh"></select>
+    </div>
+
+    <div class="field">
+      <label>Cari Siswa</label>
+      <input id="inputSearch" type="text" placeholder="Cari nama atau NIS..." />
+    </div>
+  </section>
+
+  <article class="panel panel-wide">
+    <div class="panel-header">
+      <div>
+        <h3>Tabel Input Capaian</h3>
+        <p>
+          Input/edit capaian siswa satu per satu berdasarkan data Google Sheets.
+        </p>
+      </div>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>NIS</th>
+            <th>Nama Siswa</th>
+            <th>Kelas</th>
+            <th>Halaqoh</th>
+            <th>Hafalan</th>
+            <th>Murojaah</th>
+            <th>Kedisiplinan</th>
+            <th>Status</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+
+        <tbody id="inputProgressTableBody"></tbody>
+      </table>
+    </div>
+  </article>
+</div>

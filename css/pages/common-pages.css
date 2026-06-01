@@ -1,0 +1,61 @@
+/* =========================================================
+   COMMON PAGES
+   Fungsi:
+   - Utility umum halaman.
+   - Komponen kecil yang dipakai lintas halaman.
+========================================================= */
+
+.hidden {
+  display: none !important;
+}
+
+.placeholder-panel {
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.placeholder-panel h3 {
+  margin: 0 0 10px;
+  color: var(--text-strong, var(--text));
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.placeholder-panel p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.page-title-action {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.page-title-actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding-bottom: 4px;
+}
+
+@media (max-width: 720px) {
+  .page-title-action {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-title-actions {
+    padding-bottom: 0;
+  }
+
+  .page-title-actions .btn-primary {
+    width: 100%;
+  }
+}

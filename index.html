@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/favicon/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="assets/favicon/site.webmanifest" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="assets/favicon/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="assets/favicon/android-chrome-512x512.png"
+    />
+    <meta name="theme-color" content="#0f5132" />
+
+    <title>Rapor Al-Qur’an SMPIT Nur Hikmah</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/jsuites@4/dist/jsuites.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/jspreadsheet-ce@4.9.5/dist/jspreadsheet.css"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <div id="loginPartial"></div>
+
+    <div class="app-shell hidden" id="appShell">
+      <div
+        class="mobile-sidebar-overlay"
+        id="mobileSidebarOverlay"
+        aria-hidden="true"
+      ></div>
+
+      <div id="sidebarPartial"></div>
+
+      <main class="main">
+        <div id="topbarPartial"></div>
+
+        <section class="page-content">
+          <div id="dashboardPagePartial"></div>
+          <div id="pengaturanPagePartial"></div>
+          <div id="kelasHalaqohPagePartial"></div>
+          <div id="siswaPagePartial"></div>
+          <div id="inputCapaianPagePartial"></div>
+          <div id="inputMassalPageContainer"></div>
+          <div id="previewRaporPagePartial"></div>
+          <div id="generateFilePagePartial"></div>
+          <div id="panduanPagePartial"></div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="progressModalOverlay" aria-hidden="true">
+      <div
+        class="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="progressModalTitle"
+      >
+        <div class="modal-header">
+          <div>
+            <h3 id="progressModalTitle">Edit Capaian</h3>
+            <p id="progressModalStudentInfo">Nama siswa • Kelas • Halaqoh</p>
+          </div>
+
+          <button
+            class="modal-close"
+            id="progressModalClose"
+            type="button"
+            aria-label="Tutup modal"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <form class="modal-form" id="progressForm">
+          <input type="hidden" id="progressStudentId" />
+
+          <div class="field">
+            <label for="progressMonth">Bulan</label>
+            <input
+              id="progressMonth"
+              type="text"
+              placeholder="Contoh: April-Juni"
+            />
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="progressTargetZiyadah">Target Ziyadah</label>
+              <input
+                id="progressTargetZiyadah"
+                type="text"
+                placeholder="Contoh: 10 halaman"
+              />
+            </div>
+
+            <div class="field">
+              <label for="progressTargetMurojaah">Target Murojaah</label>
+              <input
+                id="progressTargetMurojaah"
+                type="text"
+                placeholder="Contoh: 20 halaman"
+              />
+            </div>
+
+            <div class="field">
+              <label for="progressEffectiveDays">Hari Efektif</label>
+              <input
+                id="progressEffectiveDays"
+                type="number"
+                min="0"
+                placeholder="Contoh: 20"
+              />
+            </div>
+          </div>
+
+          <div class="modal-section-title">Hafalan</div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="progressHafalanStart">Mulai dari</label>
+              <input
+                id="progressHafalanStart"
+                type="text"
+                placeholder="Contoh: An-Naba"
+              />
+            </div>
+
+            <div class="field">
+              <label for="progressHafalanLast">Capaian Terakhir</label>
+              <input
+                id="progressHafalanLast"
+                type="text"
+                placeholder="Contoh: Al-Infithar"
+              />
+            </div>
+
+            <div class="field">
+              <label for="progressTotalHafalan">Total Hafalan</label>
+              <input
+                id="progressTotalHafalan"
+                type="text"
+                placeholder="Contoh: 10 halaman"
+              />
+            </div>
+
+            <div class="field">
+              <label for="progressHafalanStatus">Status Hafalan</label>
+              <select id="progressHafalanStatus">
+                <option value="Tuntas">Tuntas</option>
+                <option value="Proses">Proses</option>
+                <option value="Perlu Perhatian">Perlu Perhatian</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal-section-title">Murojaah</div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="progressMurojaahStart">Mulai dari</label>
+              <input
+                id="progressMurojaahStart"
+                type="text"
+                placeholder="Contoh: An-Naba"
+              />
+            </div>
+
+            <div class="field">
+              <label for="progressMurojaahLast">Capaian Terakhir</label>
+              <input
+                id="progressMurojaahLast"
+                type="text"
+                placeholder="Contoh: Al-Muthaffifin"
+              />
+            </div>
+
+            <div class="field">
+              <label for="progressTotalMurojaah">Total Murojaah</label>
+              <input
+                id="progressTotalMurojaah"
+                type="text"
+                placeholder="Contoh: 20 halaman"
+              />
+            </div>
+
+            <div class="field">
+              <label for="progressMurojaahStatus">Status Murojaah</label>
+              <select id="progressMurojaahStatus">
+                <option value="Tuntas">Tuntas</option>
+                <option value="Proses">Proses</option>
+                <option value="Perlu Perhatian">Perlu Perhatian</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal-section-title">Kedisiplinan</div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="progressDisciplineTarget">Target Hari</label>
+              <input
+                id="progressDisciplineTarget"
+                type="number"
+                min="0"
+                placeholder="Contoh: 20"
+              />
+            </div>
+
+            <div class="field">
+              <label for="progressDisciplineAchieved">Capaian Hari</label>
+              <input
+                id="progressDisciplineAchieved"
+                type="number"
+                min="0"
+                placeholder="Contoh: 20"
+              />
+            </div>
+
+            <div class="field">
+              <label for="progressDisciplineStatus">Status Kedisiplinan</label>
+              <select id="progressDisciplineStatus">
+                <option value="Tuntas">Tuntas</option>
+                <option value="Proses">Proses</option>
+                <option value="Perlu Perhatian">Perlu Perhatian</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal-section-title">Catatan</div>
+
+          <div class="field">
+            <label for="progressNoteHafalan">A. Target Hafalan</label>
+
+            <div class="rich-editor" data-rich-editor="progressNoteHafalan">
+              <div class="rich-editor-toolbar">
+                <button type="button" data-rich-command="bold"><b>B</b></button>
+                <button type="button" data-rich-command="italic">
+                  <i>I</i>
+                </button>
+                <button type="button" data-rich-command="underline">
+                  <u>U</u>
+                </button>
+                <button type="button" data-rich-command="insertUnorderedList">
+                  • List
+                </button>
+                <button type="button" data-rich-command="insertOrderedList">
+                  1. List
+                </button>
+              </div>
+
+              <div
+                class="rich-editor-area"
+                id="progressNoteHafalan"
+                contenteditable="true"
+                data-placeholder="Catatan target hafalan..."
+              ></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="progressNoteTahsin">B. Tahsin Tilawah</label>
+
+            <div class="rich-editor" data-rich-editor="progressNoteTahsin">
+              <div class="rich-editor-toolbar">
+                <button type="button" data-rich-command="bold"><b>B</b></button>
+                <button type="button" data-rich-command="italic">
+                  <i>I</i>
+                </button>
+                <button type="button" data-rich-command="underline">
+                  <u>U</u>
+                </button>
+                <button type="button" data-rich-command="insertUnorderedList">
+                  • List
+                </button>
+                <button type="button" data-rich-command="insertOrderedList">
+                  1. List
+                </button>
+              </div>
+
+              <div
+                class="rich-editor-area"
+                id="progressNoteTahsin"
+                contenteditable="true"
+                data-placeholder="Catatan tahsin tilawah..."
+              ></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="progressNoteDiscipline">C. Kedisiplinan</label>
+
+            <div class="rich-editor" data-rich-editor="progressNoteDiscipline">
+              <div class="rich-editor-toolbar">
+                <button type="button" data-rich-command="bold"><b>B</b></button>
+                <button type="button" data-rich-command="italic">
+                  <i>I</i>
+                </button>
+                <button type="button" data-rich-command="underline">
+                  <u>U</u>
+                </button>
+                <button type="button" data-rich-command="insertUnorderedList">
+                  • List
+                </button>
+                <button type="button" data-rich-command="insertOrderedList">
+                  1. List
+                </button>
+              </div>
+
+              <div
+                class="rich-editor-area"
+                id="progressNoteDiscipline"
+                contenteditable="true"
+                data-placeholder="Catatan kedisiplinan..."
+              ></div>
+            </div>
+          </div>
+
+          <div class="modal-section-title">Tanda Tangan</div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="progressHomeroomTeacher">Wali Kelas</label>
+              <input
+                id="progressHomeroomTeacher"
+                type="text"
+                placeholder="Contoh: Moh Arifin, S.Ag."
+              />
+            </div>
+
+            <div class="field">
+              <label for="progressQuranTeacher">Guru Al-Qur’an</label>
+              <input
+                id="progressQuranTeacher"
+                type="text"
+                placeholder="Contoh: Siti Us Bandiyah, S.Ag."
+              />
+            </div>
+
+            <div class="field">
+              <label for="progressReportPlaceDate">Tempat, Tanggal</label>
+              <input
+                id="progressReportPlaceDate"
+                type="text"
+                placeholder="Contoh: Bekasi, 26 Juni 2025"
+              />
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button
+              class="btn-secondary"
+              id="progressModalCancel"
+              type="button"
+            >
+              Batal
+            </button>
+
+            <button class="btn-primary" type="submit">Simpan Capaian</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Spreadsheet Library -->
+    <script src="https://cdn.jsdelivr.net/npm/jsuites@4/dist/jsuites.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspreadsheet-ce@4.9.5/dist/index.js"></script>
+
+    <!-- HTML to Canvas and PDF Conversion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- Excel Export Library -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+    <!-- App Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/partials.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/routing.js"></script>
+    <script src="js/pengaturan.js"></script>
+    <script src="js/kelas-halaqoh.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/siswa.js"></script>
+    <script src="js/input-capaian.js"></script>
+    <script src="js/modal-capaian.js"></script>
+    <script src="js/preview-rapor.js"></script>
+    <script src="js/generate-file.js"></script>
+    <script src="js/input-massal/input-massal-state.js"></script>
+    <script src="js/input-massal/input-massal-options.js"></script>
+    <script src="js/input-massal/input-massal-note-editor.js"></script>
+    <script src="js/input-massal/input-massal-spreadsheet.js"></script>
+    <script src="js/input-massal/input-massal-validation.js"></script>
+    <script src="js/input-massal/input-massal-save.js"></script>
+    <script src="js/input-massal/input-massal.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

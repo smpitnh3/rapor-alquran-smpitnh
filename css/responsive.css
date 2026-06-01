@@ -1,0 +1,464 @@
+/* =========================================================
+   RESPONSIVE.CSS
+   Fungsi:
+   - Mengatur layout tablet dan mobile.
+   - Mengatur mobile sidebar drawer.
+   - Mengatur print formal rapor A4.
+   Catatan:
+   - Dark mode utama sudah ditangani oleh tokens.css, layout.css,
+     components.css, dan file css/pages/*.
+========================================================= */
+
+/* =========================
+   RESPONSIVE TABLET
+========================= */
+
+@media (max-width: 1180px) {
+  .stat-grid,
+  .filter-card {
+    grid-template-columns: repeat(2, minmax(160px, 1fr));
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   MOBILE DRAWER
+========================= */
+
+@media (max-width: 880px) {
+  body.mobile-menu-open {
+    overflow: hidden;
+  }
+
+  .app-shell {
+    display: block;
+  }
+
+  .mobile-sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay, 80);
+    background: var(--overlay);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity var(--transition-base),
+      visibility var(--transition-base);
+  }
+
+  body.mobile-menu-open .mobile-sidebar-overlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .sidebar {
+    width: min(86vw, 340px);
+    max-width: 340px;
+    height: 100dvh;
+    min-height: 100dvh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: auto;
+    z-index: var(--z-modal, 90);
+    display: flex;
+    flex-direction: column;
+    border-right: 0;
+    border-left: 1px solid var(--border);
+    border-bottom: 0;
+    padding: 18px 14px;
+    transform: translateX(105%);
+    transition:
+      transform 0.25s ease,
+      background var(--transition-base),
+      border-color var(--transition-base);
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+  }
+
+  body.mobile-menu-open .sidebar {
+    transform: translateX(0);
+  }
+
+  .app-shell.sidebar-collapsed .sidebar {
+    width: min(86vw, 340px);
+    max-width: 340px;
+    padding: 18px 14px;
+  }
+
+  .app-shell.sidebar-collapsed .brand {
+    justify-content: space-between;
+    padding: 4px 6px 16px;
+  }
+
+  .app-shell.sidebar-collapsed .brand-logo {
+    width: 142px;
+    height: auto;
+  }
+
+  .app-shell.sidebar-collapsed .menu-label {
+    opacity: 1;
+    height: auto;
+    margin: 18px 10px 8px;
+    overflow: visible;
+  }
+
+  .app-shell.sidebar-collapsed .menu-item {
+    justify-content: flex-start;
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .app-shell.sidebar-collapsed .menu-item > span:not(.menu-icon) {
+    display: inline;
+  }
+
+  .brand {
+    height: 64px;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .drawer-close {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: var(--surface-soft);
+    color: var(--text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .drawer-close:hover {
+    background: var(--brand-green-soft);
+    color: var(--brand-green);
+  }
+
+  .drawer-close svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .mobile-account-panel {
+    display: grid;
+    gap: 10px;
+    padding: 12px;
+    margin: 0 0 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg, 18px);
+    background: var(--surface-soft);
+  }
+
+  .mobile-account-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mobile-account-info strong {
+    display: block;
+    color: var(--text-strong, var(--text));
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .mobile-account-info span {
+    display: block;
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 500;
+    word-break: break-word;
+  }
+
+  .mobile-theme-button,
+  .mobile-logout-button {
+    width: 100%;
+    min-height: 42px;
+    border-radius: 13px;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 800;
+    transition:
+      background var(--transition-fast),
+      color var(--transition-fast),
+      border-color var(--transition-fast);
+  }
+
+  .mobile-theme-button {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+  }
+
+  .mobile-theme-button:hover {
+    background: var(--brand-green-soft);
+    color: var(--brand-green);
+  }
+
+  .mobile-theme-icon,
+  .mobile-theme-icon svg {
+    width: 19px;
+    height: 19px;
+    display: inline-flex;
+  }
+
+  .mobile-logout-button {
+    border: 0;
+    background: var(--danger-soft);
+    color: var(--danger);
+  }
+
+  .mobile-logout-button:hover {
+    background: var(--danger-soft);
+    color: var(--danger);
+  }
+
+  .topbar {
+    height: 64px;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr) 46px;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .topbar-left {
+    display: contents;
+  }
+
+  .topbar-mobile-logo {
+    display: block;
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    justify-self: start;
+  }
+
+  .topbar-title {
+    min-width: 0;
+    text-align: center;
+  }
+
+  .topbar h1 {
+    font-size: 16px;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .topbar p,
+  .topbar .back-button,
+  .topbar-right {
+    display: none;
+  }
+
+  .hamburger-button {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: var(--surface);
+    color: var(--text);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    justify-self: end;
+  }
+
+  .hamburger-button:hover {
+    background: var(--surface-soft);
+    color: var(--brand-green);
+  }
+
+  .hamburger-button span {
+    width: 18px;
+    height: 2px;
+    border-radius: var(--radius-full, 999px);
+    background: currentColor;
+  }
+
+  .sidebar-menu {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-label {
+    grid-column: 1 / -1;
+  }
+
+  .page-content {
+    padding: 22px 18px 34px;
+  }
+
+  .page-title {
+    display: block;
+  }
+
+  .date-card {
+    width: fit-content;
+    margin-top: 16px;
+  }
+
+  .filter-card,
+  .stat-grid,
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 620px) {
+  .page-title h2 {
+    font-size: 23px;
+  }
+
+  .panel-header {
+    display: block;
+  }
+
+  .panel-header .btn-primary,
+  .panel-header .btn-secondary {
+    width: 100%;
+    margin-top: 14px;
+  }
+
+  .stat-card {
+    min-height: 104px;
+  }
+
+  .sidebar,
+  .app-shell.sidebar-collapsed .sidebar {
+    width: min(88vw, 340px);
+  }
+}
+
+/* =========================
+   PRINT FORMAL REPORT
+========================= */
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #raporPreviewPaper,
+  #raporPreviewPaper * {
+    visibility: visible;
+  }
+
+  #raporPreviewPaper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 13mm !important;
+    box-sizing: border-box;
+    border: 0 !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  #raporPreviewPaper .report-logo img {
+    width: 84px;
+  }
+
+  #raporPreviewPaper .report-title h3 {
+    font-size: 14px;
+  }
+
+  #raporPreviewPaper .report-title h4 {
+    font-size: 12px;
+  }
+
+  #raporPreviewPaper .report-meta p,
+  #raporPreviewPaper .report-note-block p,
+  #raporPreviewPaper .report-note-block strong,
+  #raporPreviewPaper .signature-box p,
+  #raporPreviewPaper .signature-box strong {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+
+  #raporPreviewPaper .formal-report-table th,
+  #raporPreviewPaper .formal-report-table td {
+    font-size: 11px;
+    padding: 4px 3px;
+    line-height: 1.2;
+  }
+
+  #raporPreviewPaper .report-header {
+    margin-bottom: 16px;
+  }
+
+  #raporPreviewPaper .report-meta {
+    margin-bottom: 14px;
+  }
+
+  #raporPreviewPaper .formal-report-table {
+    margin-bottom: 13px;
+  }
+
+  #raporPreviewPaper .discipline-report-table {
+    margin-bottom: 14px;
+  }
+
+  #raporPreviewPaper .report-note-block {
+    min-height: 34px;
+  }
+
+  #raporPreviewPaper .report-note-line {
+    margin: 10px 0 12px;
+  }
+
+  #raporPreviewPaper .report-signature {
+    margin-top: 18px;
+  }
+
+  #raporPreviewPaper .signature-space {
+    height: 42px;
+  }
+
+  #raporPreviewPaper .signature-left {
+    transform: translateX(-28px);
+  }
+
+  #raporPreviewPaper .signature-right {
+    transform: translateX(28px);
+  }
+}

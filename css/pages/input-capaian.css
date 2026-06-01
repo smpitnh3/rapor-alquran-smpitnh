@@ -1,0 +1,89 @@
+/* =========================================================
+   INPUT CAPAIAN PAGE
+   Fungsi:
+   - Mengatur filter input capaian.
+   - Mengatur modal input/edit capaian siswa.
+========================================================= */
+
+.input-filter-card {
+  grid-template-columns:
+    minmax(150px, 0.9fr)
+    minmax(150px, 0.9fr)
+    minmax(150px, 1fr)
+    minmax(170px, 1fr)
+    minmax(190px, 1.1fr);
+}
+
+#progressModalOverlay .modal-card {
+  display: flex;
+  flex-direction: column;
+  width: min(1040px, calc(100vw - 40px));
+  max-height: calc(100vh - 32px);
+}
+
+#progressModalOverlay .modal-header {
+  flex-shrink: 0;
+}
+
+#progressModalOverlay .modal-form {
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+#progressModalOverlay .form-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#progressModalOverlay .modal-section-title {
+  margin-top: 18px;
+}
+
+#progressModalOverlay .rich-editor-area {
+  min-height: 130px;
+}
+
+#progressModalOverlay .modal-actions {
+  position: sticky;
+  bottom: 0;
+  padding-top: 14px;
+  margin-top: 18px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 1180px) {
+  .input-filter-card {
+    grid-template-columns: repeat(2, minmax(160px, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  #progressModalOverlay {
+    padding: 0;
+  }
+
+  #progressModalOverlay .modal-card {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  #progressModalOverlay .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #progressModalOverlay .modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  #progressModalOverlay .modal-actions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 620px) {
+  .input-filter-card {
+    grid-template-columns: 1fr;
+  }
+}

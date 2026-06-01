@@ -1,0 +1,72 @@
+<div class="page-view input-massal-page" data-view="input-massal">
+  <div class="page-title page-title-action input-massal-title">
+    <div>
+      <p class="eyebrow">Rapor Al-Qur’an</p>
+      <h2>Input Massal</h2>
+      <p>Input capaian banyak siswa menggunakan tampilan spreadsheet.</p>
+    </div>
+
+    <div class="page-title-actions">
+      <button class="btn-secondary" id="closeBulkInputPage" type="button">
+        ✕ Kembali
+      </button>
+    </div>
+  </div>
+
+  <section class="filter-card bulk-filter-card">
+    <div class="field">
+      <label>Tahun Ajaran</label>
+      <select id="bulkFilterYear"></select>
+    </div>
+
+    <div class="field">
+      <label>Periode</label>
+      <select id="bulkFilterPeriod"></select>
+    </div>
+
+    <div class="field">
+      <label>Kelas</label>
+      <select id="bulkFilterClass"></select>
+    </div>
+
+    <div class="field">
+      <label>Halaqoh</label>
+      <select id="bulkFilterHalaqoh"></select>
+    </div>
+  </section>
+
+  <article class="panel panel-wide">
+    <div class="panel-header">
+      <div>
+        <h3>Spreadsheet Input Massal</h3>
+        <p>
+          Edit capaian banyak siswa sekaligus. Double click kolom catatan untuk
+          membuka editor.
+        </p>
+      </div>
+
+      <div class="bulk-toolbar">
+        <button class="btn-secondary" id="bulkReloadButton" type="button">
+          Reset Data
+        </button>
+
+        <button class="btn-secondary" id="bulkValidateButton" type="button">
+          Cek Data
+        </button>
+
+        <button
+          class="btn-primary"
+          id="bulkSaveAllButton"
+          type="button"
+          disabled
+        >
+          Simpan Semua
+        </button>
+      </div>
+    </div>
+
+    <div class="bulk-spreadsheet-shell">
+      <div id="bulkSpreadsheet"></div>
+    </div>
+  </article>
+</div>

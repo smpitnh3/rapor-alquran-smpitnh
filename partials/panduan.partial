@@ -1,0 +1,164 @@
+<div class="page-view" data-view="tentang">
+  <div class="page-title">
+    <div>
+      <p class="eyebrow">Bantuan Pengguna</p>
+      <h2>Panduan</h2>
+      <p>
+        Panduan singkat penggunaan aplikasi Rapor Al-Qur’an untuk guru dan
+        admin.
+      </p>
+    </div>
+  </div>
+
+  <section class="guide-grid">
+    <article class="panel guide-hero-card">
+      <div>
+        <p class="eyebrow">Alur Utama</p>
+        <h3>Cara Menggunakan Aplikasi</h3>
+        <p>
+          Gunakan alur berikut untuk memastikan data capaian Al-Qur’an terisi
+          rapi sebelum rapor dicetak atau dibuat PDF.
+        </p>
+      </div>
+    </article>
+
+    <article class="panel">
+      <div class="panel-header compact">
+        <div>
+          <h3>Alur Kerja</h3>
+          <p>Urutan penggunaan aplikasi dari awal sampai generate file.</p>
+        </div>
+      </div>
+
+      <div class="guide-steps">
+        <div class="guide-step">
+          <span>1</span>
+          <div>
+            <strong>Cek Pengaturan</strong>
+            <p>
+              Pastikan tahun ajaran, periode, bulan, target default, hari
+              efektif, dan tempat tanggal rapor sudah sesuai.
+            </p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <span>2</span>
+          <div>
+            <strong>Cek Kelas, Halaqoh, dan Siswa</strong>
+            <p>
+              Pastikan data kelas, halaqoh, guru pengampu, dan siswa aktif sudah
+              benar.
+            </p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <span>3</span>
+          <div>
+            <strong>Input Capaian</strong>
+            <p>
+              Isi capaian hafalan, murojaah, kedisiplinan, serta catatan guru
+              untuk setiap siswa.
+            </p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <span>4</span>
+          <div>
+            <strong>Cek Preview Rapor</strong>
+            <p>
+              Gunakan tombol sebelumnya dan selanjutnya untuk memeriksa rapor
+              siswa satu per satu.
+            </p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <span>5</span>
+          <div>
+            <strong>Generate File</strong>
+            <p>
+              Buat PDF per siswa, PDF gabungan, atau Excel rekap sesuai
+              kebutuhan admin/guru.
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="panel">
+      <div class="panel-header compact">
+        <div>
+          <h3>Arti Status</h3>
+          <p>
+            Penjelasan status yang muncul pada dashboard, input capaian, dan
+            rapor.
+          </p>
+        </div>
+      </div>
+
+      <div class="status-guide-list">
+        <div>
+          <span class="badge warning">Belum Input</span>
+          <p>Data capaian siswa belum diisi pada periode aktif.</p>
+        </div>
+
+        <div>
+          <span class="badge warning">Proses</span>
+          <p>
+            Capaian siswa sedang berjalan dan belum sepenuhnya mencapai target.
+          </p>
+        </div>
+
+        <div>
+          <span class="badge success">Tuntas</span>
+          <p>Siswa sudah mencapai target yang ditetapkan.</p>
+        </div>
+
+        <div>
+          <span class="badge danger">Perlu Perhatian</span>
+          <p>
+            Siswa membutuhkan pendampingan lebih lanjut pada aspek tertentu.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <article class="panel">
+      <div class="panel-header compact">
+        <div>
+          <h3>Jenis Output</h3>
+          <p>Gunakan jenis output sesuai kebutuhan laporan.</p>
+        </div>
+      </div>
+
+      <div class="guide-output-list">
+        <div>
+          <strong>PDF Per Siswa</strong>
+          <p>
+            Satu siswa menghasilkan satu file PDF. Cocok untuk distribusi
+            personal ke orang tua.
+          </p>
+        </div>
+
+        <div>
+          <strong>PDF Gabungan</strong>
+          <p>
+            Satu file PDF berisi banyak siswa berdasarkan filter halaqoh atau
+            kelas. Cocok untuk arsip dan cetak massal.
+          </p>
+        </div>
+
+        <div>
+          <strong>Excel Rekap</strong>
+          <p>
+            File rekap data capaian siswa. Cocok untuk evaluasi guru,
+            koordinator Al-Qur’an, dan admin sekolah.
+          </p>
+        </div>
+      </div>
+    </article>
+  </section>
+</div>

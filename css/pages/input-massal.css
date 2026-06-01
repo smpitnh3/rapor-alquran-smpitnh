@@ -1,0 +1,325 @@
+/* =========================================================
+   INPUT MASSAL PAGE
+   Fungsi:
+   - Mengatur halaman input massal.
+   - Mengatur Jspreadsheet.
+   - Mengatur modal catatan rich text input massal.
+========================================================= */
+
+.input-massal-page {
+  display: none;
+  width: 100%;
+  min-height: calc(100vh - 90px);
+}
+
+.input-massal-page.active,
+.page-content .page-view.input-massal-page.active {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.input-massal-title {
+  margin-bottom: 20px;
+}
+
+.bulk-filter-card {
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
+}
+
+.bulk-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+.bulk-toolbar button {
+  white-space: nowrap;
+}
+
+.bulk-spreadsheet-shell {
+  min-height: 420px;
+  padding: 0;
+  overflow: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md, 14px);
+}
+
+.bulk-spreadsheet-placeholder {
+  display: grid;
+  place-items: center;
+  min-height: 420px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+#bulkSpreadsheet {
+  width: 100%;
+}
+
+.bulk-spreadsheet-shell .jexcel,
+.bulk-spreadsheet-shell .jspreadsheet {
+  font-family: var(--font-main, "Poppins", sans-serif);
+  font-size: 13px;
+}
+
+.bulk-spreadsheet-shell .jexcel td,
+.bulk-spreadsheet-shell .jspreadsheet td {
+  max-height: 34px;
+  height: 34px;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  vertical-align: middle;
+  white-space: nowrap !important;
+}
+
+.bulk-spreadsheet-shell .jexcel tbody tr,
+.bulk-spreadsheet-shell .jspreadsheet tbody tr {
+  height: 34px !important;
+}
+
+/* =========================
+   BULK NOTE MODAL
+========================= */
+
+.swal2-container .swal2-popup.bulk-note-modal {
+  position: relative !important;
+  width: min(1040px, calc(100vw - 40px)) !important;
+  max-height: calc(100vh - 32px) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 28px !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.swal2-container .swal2-popup.bulk-note-modal .swal2-html-container {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  text-align: left !important;
+}
+
+.bulk-note-shell {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: calc(100vh - 32px);
+}
+
+.bulk-note-close {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  z-index: 6;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.bulk-note-close:hover {
+  background: var(--surface-soft);
+}
+
+.bulk-note-header {
+  flex-shrink: 0;
+  padding: 26px 84px 18px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.bulk-note-title h3 {
+  margin: 0;
+  color: var(--text-strong, var(--text));
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: left;
+}
+
+.bulk-note-title p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.bulk-note-body {
+  flex: 1;
+  min-height: 0;
+  padding: 18px 24px 0;
+  overflow-y: auto;
+}
+
+.bulk-note-section-title {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.swal2-container .swal2-popup.bulk-note-modal .bulk-rich-editor {
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  text-align: left;
+}
+
+.swal2-container .swal2-popup.bulk-note-modal .rich-editor-toolbar,
+.swal2-container .swal2-popup.bulk-note-modal .bulk-note-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px;
+  background: var(--surface-soft);
+  border-bottom: 1px solid var(--border);
+}
+
+.swal2-container .swal2-popup.bulk-note-modal .rich-editor-toolbar button,
+.swal2-container .swal2-popup.bulk-note-modal .bulk-note-toolbar button {
+  display: inline-grid;
+  place-items: center;
+  min-width: 34px;
+  height: 32px;
+  padding: 7px 10px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.swal2-container .swal2-popup.bulk-note-modal .bulk-rich-editor-area {
+  min-height: 170px;
+  max-height: 38vh;
+  padding: 24px 14px 14px;
+  overflow-y: auto;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.65;
+  text-align: left;
+  outline: none;
+}
+
+.bulk-note-actions {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 22px 24px 24px;
+  margin-top: 18px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.bulk-note-actions .btn-secondary,
+.bulk-note-actions .btn-primary {
+  min-width: 156px;
+  height: 44px;
+  justify-content: center;
+}
+
+@media (max-width: 1180px) {
+  .bulk-filter-card {
+    grid-template-columns: repeat(2, minmax(160px, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .bulk-toolbar {
+    width: 100%;
+    justify-content: stretch;
+    flex-wrap: wrap;
+  }
+
+  .bulk-toolbar button {
+    flex: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .input-massal-title {
+    flex-direction: column;
+  }
+
+  .input-massal-title .btn-secondary {
+    width: 100%;
+  }
+
+  .bulk-spreadsheet-shell,
+  .bulk-spreadsheet-placeholder {
+    min-height: 360px;
+  }
+}
+
+@media (max-width: 720px) {
+  .swal2-container .swal2-popup.bulk-note-modal {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
+  }
+
+  .bulk-note-shell {
+    height: 100vh;
+    max-height: 100vh;
+  }
+
+  .bulk-note-close {
+    top: 16px;
+    right: 16px;
+  }
+
+  .bulk-note-header {
+    padding: 22px 72px 16px 16px;
+  }
+
+  .bulk-note-body {
+    padding: 16px;
+  }
+
+  .swal2-container .swal2-popup.bulk-note-modal .bulk-rich-editor-area {
+    min-height: 320px;
+    max-height: none;
+  }
+
+  .bulk-note-actions {
+    flex-direction: column-reverse;
+    padding: 16px;
+    margin-top: 0;
+  }
+
+  .bulk-note-actions .btn-secondary,
+  .bulk-note-actions .btn-primary {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .bulk-filter-card {
+    grid-template-columns: 1fr;
+  }
+}

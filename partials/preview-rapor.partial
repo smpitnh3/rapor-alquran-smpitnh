@@ -1,0 +1,192 @@
+<div class="page-view" data-view="preview">
+  <div class="page-title">
+    <div>
+      <p class="eyebrow">Rapor Al-Qur’an</p>
+      <h2>Preview Rapor</h2>
+      <p>
+        Lihat pratinjau laporan capaian pembelajaran Al-Qur’an sebelum dicetak
+        atau dibuat PDF.
+      </p>
+    </div>
+  </div>
+
+  <section class="filter-card preview-filter-card">
+    <div class="field">
+      <label>Tahun Ajaran</label>
+      <select id="previewFilterYear"></select>
+    </div>
+
+    <div class="field">
+      <label>Periode</label>
+      <select id="previewFilterPeriod"></select>
+    </div>
+
+    <div class="field">
+      <label>Kelas</label>
+      <select id="previewFilterClass"></select>
+    </div>
+
+    <div class="field">
+      <label>Halaqoh</label>
+      <select id="previewFilterHalaqoh"></select>
+    </div>
+
+    <div class="field">
+      <label>Siswa</label>
+      <select id="previewFilterStudent"></select>
+    </div>
+  </section>
+
+  <article class="preview-toolbar">
+    <button class="btn-secondary" id="previewPrevButton" type="button">
+      &lt; Sebelumnya
+    </button>
+
+    <button class="btn-secondary" id="previewNextButton" type="button">
+      Selanjutnya &gt;
+    </button>
+
+    <button class="btn-primary" id="previewPrintButton" type="button">
+      Cetak Preview
+    </button>
+  </article>
+
+  <section class="report-preview-wrapper">
+    <article class="report-paper" id="raporPreviewPaper">
+      <header class="report-header">
+        <div class="report-logo">
+          <img src="assets/images/logo-nurhikmah.svg" alt="Logo Nur Hikmah" />
+        </div>
+
+        <div class="report-title">
+          <h3>LAPORAN CAPAIAN PEMBELAJARAN AL-QUR’AN</h3>
+          <h4>SMPIT NUR HIKMAH</h4>
+          <h4 id="reportSemesterTitle">SEMESTER II T.A. 2024/2025</h4>
+        </div>
+
+        <div class="report-header-spacer" aria-hidden="true"></div>
+      </header>
+
+      <section class="report-meta">
+        <div class="report-meta-left">
+          <p>
+            <strong>NAMA</strong><span>:</span><b id="reportStudentName">-</b>
+          </p>
+          <p>
+            <strong>KELAS</strong><span>:</span><b id="reportStudentClass">-</b>
+          </p>
+          <p><strong>BULAN</strong><span>:</span><b id="reportMonth">-</b></p>
+        </div>
+
+        <div class="report-meta-right">
+          <p>
+            <strong>TARGET ZIYADAH</strong><span>:</span
+            ><b id="reportTargetZiyadah">-</b>
+          </p>
+          <p>
+            <strong>TARGET MUROJAAH</strong><span>:</span
+            ><b id="reportTargetMurojaah">-</b>
+          </p>
+          <p>
+            <strong>HARI EFEKTIF</strong><span>:</span
+            ><b id="reportEffectiveDays">-</b>
+          </p>
+        </div>
+      </section>
+
+      <table class="formal-report-table main-report-table">
+        <thead>
+          <tr>
+            <th colspan="2">HAFALAN</th>
+            <th rowspan="2">Total Hafalan</th>
+            <th rowspan="2">Status</th>
+            <th colspan="2">MUROJAAH</th>
+            <th rowspan="2">Total<br />Murojaah</th>
+            <th rowspan="2">Status</th>
+          </tr>
+          <tr>
+            <th>Mulai dari</th>
+            <th>Capaian<br />Terakhir</th>
+            <th>Mulai dari</th>
+            <th>Capaian Terakhir</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td id="reportHafalanStart">-</td>
+            <td id="reportHafalanLast">-</td>
+            <td id="reportTotalHafalan">-</td>
+            <td id="reportHafalanStatus" class="status-cell">-</td>
+            <td id="reportMurojaahStart">-</td>
+            <td id="reportMurojaahLast">-</td>
+            <td id="reportTotalMurojaah">-</td>
+            <td id="reportMurojaahStatus" class="status-cell">-</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="formal-report-table discipline-report-table">
+        <thead>
+          <tr>
+            <th colspan="3">KEDISIPLINAN</th>
+          </tr>
+          <tr>
+            <th>Target</th>
+            <th>Capaian</th>
+            <th>Keterangan</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td id="reportDisciplineTarget">-</td>
+            <td id="reportDisciplineAchieved">-</td>
+            <td id="reportDisciplineStatus">-</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <section class="report-notes">
+        <h4>Catatan</h4>
+
+        <div class="report-note-block">
+          <strong>A. Target Hafalan</strong>
+          <div id="reportNoteHafalan" class="report-note-content">-</div>
+        </div>
+
+        <div class="report-note-line"></div>
+
+        <div class="report-note-block">
+          <strong>B. Tahsin Tilawah</strong>
+          <div id="reportNoteTahsin" class="report-note-content">-</div>
+        </div>
+
+        <div class="report-note-line"></div>
+
+        <div class="report-note-block">
+          <strong>C. Kedisiplinan</strong>
+          <div id="reportNoteDiscipline" class="report-note-content">-</div>
+        </div>
+
+        <div class="report-note-line"></div>
+      </section>
+
+      <section class="report-signature">
+        <div class="signature-box signature-left">
+          <p class="signature-date-placeholder">&nbsp;</p>
+          <p>Wali Kelas</p>
+          <div class="signature-space"></div>
+          <strong id="reportHomeroomTeacher">-</strong>
+        </div>
+
+        <div class="signature-box signature-right">
+          <p id="reportPlaceDate">Bekasi, 26 Juni 2025</p>
+          <p>Guru Al-Qur’an</p>
+          <div class="signature-space"></div>
+          <strong id="reportQuranTeacher">-</strong>
+        </div>
+      </section>
+    </article>
+  </section>
+</div>

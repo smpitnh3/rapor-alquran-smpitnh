@@ -1,0 +1,103 @@
+/* =========================================================
+   PANDUAN PAGE
+   Fungsi:
+   - Mengatur halaman panduan penggunaan aplikasi.
+   - Mengatur hero, alur kerja, status guide, dan output guide.
+========================================================= */
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 22px;
+}
+
+.guide-hero-card {
+  grid-column: 1 / -1;
+  background:
+    linear-gradient(135deg, var(--brand-green-soft), transparent),
+    var(--surface);
+}
+
+.guide-hero-card h3 {
+  margin: 0;
+  color: var(--text-strong, var(--text));
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.guide-hero-card p {
+  max-width: 760px;
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.guide-steps,
+.status-guide-list,
+.guide-output-list {
+  display: grid;
+}
+
+.guide-steps {
+  gap: 14px;
+}
+
+.status-guide-list,
+.guide-output-list {
+  gap: 12px;
+}
+
+.guide-step {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.guide-step > span {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  background: var(--brand-green);
+  color: var(--text-inverse, #ffffff);
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.guide-step strong,
+.guide-output-list strong {
+  display: block;
+  color: var(--text-strong, var(--text));
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.guide-step p,
+.status-guide-list p,
+.guide-output-list p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.status-guide-list div,
+.guide-output-list div {
+  padding: 14px;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md, 14px);
+}
+
+.status-guide-list .badge {
+  margin-bottom: 6px;
+}
+
+@media (max-width: 1180px) {
+  .guide-grid {
+    grid-template-columns: 1fr;
+  }
+}

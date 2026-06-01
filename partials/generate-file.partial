@@ -1,0 +1,141 @@
+<div class="page-view" data-view="pdf">
+  <div class="page-title">
+    <div>
+      <p class="eyebrow">Rapor Al-Qur’an</p>
+      <h2>Generate File</h2>
+      <p>
+        Buat file rapor dalam format PDF atau Excel berdasarkan siswa, halaqoh,
+        atau kelas.
+      </p>
+    </div>
+  </div>
+
+  <section class="generate-grid">
+    <!-- PANEL KIRI -->
+    <article class="panel generate-setting-panel">
+      <div class="panel-header compact">
+        <div>
+          <h3>Pengaturan File</h3>
+          <p>Pilih periode, target data, dan format file yang ingin dibuat.</p>
+        </div>
+      </div>
+
+      <div class="generate-form">
+        <div class="field">
+          <label>Tahun Ajaran</label>
+          <select id="pdfFilterYear"></select>
+        </div>
+
+        <div class="field">
+          <label>Periode</label>
+          <select id="pdfFilterPeriod"></select>
+        </div>
+
+        <div class="field">
+          <label>Target Generate</label>
+          <select id="pdfGenerateMode">
+            <option value="student">Satu Siswa</option>
+            <option value="halaqoh">Satu Halaqoh</option>
+            <option value="class">Satu Kelas</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Format File</label>
+          <select id="pdfFileType">
+            <option value="pdf">PDF</option>
+            <option value="excel">Excel Rekap</option>
+          </select>
+        </div>
+
+        <div class="field" id="pdfOutputTypeField">
+          <label>Jenis PDF</label>
+          <select id="pdfOutputType">
+            <option value="individual">PDF Per Siswa</option>
+            <option value="combined">PDF Gabungan</option>
+          </select>
+        </div>
+
+        <div class="field" id="pdfStudentField">
+          <label>Siswa</label>
+          <select id="pdfFilterStudent"></select>
+        </div>
+
+        <div class="field" id="pdfHalaqohField">
+          <label>Halaqoh</label>
+          <select id="pdfFilterHalaqoh"></select>
+        </div>
+
+        <div class="field" id="pdfClassField">
+          <label>Kelas</label>
+          <select id="pdfFilterClass"></select>
+        </div>
+
+        <div class="generate-summary-card">
+          <span>Ringkasan Target</span>
+          <strong id="pdfEstimateCount">0 File PDF</strong>
+          <p id="pdfEstimateDescription">
+            Pilih target data untuk melihat estimasi file yang akan dibuat.
+          </p>
+        </div>
+
+        <div class="generate-progress-card" id="pdfProgressCard">
+          <div class="generate-progress-header">
+            <strong id="pdfProgressTitle">Menunggu proses generate</strong>
+            <span id="pdfProgressPercent">0%</span>
+          </div>
+
+          <div class="generate-progress-bar">
+            <span id="pdfProgressBar"></span>
+          </div>
+
+          <p id="pdfProgressMessage">
+            Pilih target, lalu klik tombol generate untuk memulai proses.
+          </p>
+        </div>
+
+        <div class="generate-actions">
+          <button
+            class="btn-secondary"
+            id="pdfPreviewTargetButton"
+            type="button"
+          >
+            Preview Rapor
+          </button>
+
+          <button class="btn-primary" id="pdfGenerateButton" type="button">
+            Generate PDF
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <!-- PANEL KANAN -->
+    <article class="panel panel-wide generate-history-panel">
+      <div class="panel-header">
+        <div>
+          <h3>Riwayat Generate</h3>
+          <p>Daftar file PDF atau Excel yang pernah dibuat.</p>
+        </div>
+      </div>
+
+      <div class="table-wrapper generate-history-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Waktu</th>
+              <th>Jenis File</th>
+              <th>Output</th>
+              <th>Mode</th>
+              <th>Target</th>
+              <th>Jumlah</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody id="pdfHistoryBody"></tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+</div>

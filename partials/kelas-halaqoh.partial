@@ -1,0 +1,123 @@
+<div class="page-view" data-view="kelas">
+  <div class="page-title">
+    <div>
+      <p class="eyebrow">Data Utama</p>
+      <h2>Kelas & Halaqoh</h2>
+      <p>
+        Lihat komposisi kelas, halaqoh, wali kelas, guru pengampu, dan jumlah
+        siswa.
+      </p>
+    </div>
+  </div>
+
+  <section class="filter-card">
+    <div class="field">
+      <label>Tahun Ajaran</label>
+      <select id="classPageAcademicYear"></select>
+    </div>
+
+    <div class="field">
+      <label>Cari Kelas / Halaqoh / Walas / Guru</label>
+      <input
+        id="classPageSearch"
+        type="text"
+        placeholder="Cari kelas, wali kelas, halaqoh, atau guru..."
+      />
+    </div>
+  </section>
+
+  <section class="stat-grid class-page-stats">
+    <article class="stat-card">
+      <p>Total Kelas</p>
+      <h3 id="classPageTotalClass">0</h3>
+      <span>Aktif pada tahun ajaran ini</span>
+    </article>
+
+    <article class="stat-card">
+      <p>Total Halaqoh</p>
+      <h3 id="classPageTotalHalaqoh">0</h3>
+      <span>Kelompok pembelajaran Al-Qur’an</span>
+    </article>
+
+    <article class="stat-card">
+      <p>Total Siswa</p>
+      <h3 id="classPageTotalStudent">0</h3>
+      <span>Siswa aktif pada data yang tampil</span>
+    </article>
+
+    <article class="stat-card">
+      <p>Rata-rata</p>
+      <h3 id="classPageAverageStudent">0</h3>
+      <span>Siswa per halaqoh</span>
+    </article>
+  </section>
+
+  <section class="class-halaqoh-grid">
+    <article class="panel">
+      <div class="panel-header">
+        <div>
+          <h3>Daftar Kelas</h3>
+          <p>Daftar kelas aktif pada tahun ajaran yang dipilih.</p>
+        </div>
+
+        <button
+          class="btn-primary"
+          id="openClassSheetButton"
+          type="button"
+          data-master-only
+        >
+          Kelola
+        </button>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Kelas</th>
+              <th>Level</th>
+              <th>Wali Kelas</th>
+              <th>Jumlah Siswa</th>
+              <th>Halaqoh</th>
+            </tr>
+          </thead>
+
+          <tbody id="classPageClassBody"></tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="panel">
+      <div class="panel-header">
+        <div>
+          <h3>Daftar Halaqoh</h3>
+          <p>Daftar halaqoh beserta kelas, guru pengampu, dan jumlah siswa.</p>
+        </div>
+
+        <button
+          class="btn-primary"
+          id="openHalaqohSheetButton"
+          type="button"
+          data-master-only
+        >
+          Kelola
+        </button>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Halaqoh</th>
+              <th>Kelas</th>
+              <th>Guru</th>
+              <th>Siswa</th>
+            </tr>
+          </thead>
+
+          <tbody id="classPageHalaqohBody"></tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+</div>

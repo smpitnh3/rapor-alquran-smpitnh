@@ -1,0 +1,16 @@
+/* =========================================================
+   PAGES.CSS
+   Fungsi:
+   - Menghubungkan seluruh style khusus halaman.
+   - File detail dipisah per halaman agar mudah dirawat.
+========================================================= */
+
+@import url("./pages/common-pages.css");
+@import url("./pages/preview-rapor.css");
+@import url("./pages/generate-file.css");
+@import url("./pages/pengaturan.css");
+@import url("./pages/kelas-halaqoh.css");
+@import url("./pages/panduan.css");
+@import url("./pages/login.css");
+@import url("./pages/input-capaian.css");
+@import url("./pages/input-massal.css");

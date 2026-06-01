@@ -1,0 +1,38 @@
+<section id="loginPage" class="login-page hidden">
+  <div class="login-card">
+    <div class="login-brand">
+      <img src="assets/images/logo-nurhikmah.png" alt="Logo SMPIT Nur Hikmah" />
+
+      <div>
+        <h1>Rapor Al-Qur’an</h1>
+        <p>SMPIT Nur Hikmah</p>
+      </div>
+    </div>
+
+    <form id="loginForm" class="login-form">
+      <div class="login-field">
+        <label for="loginEmail">Email</label>
+        <input
+          id="loginEmail"
+          type="email"
+          placeholder="Masukkan email"
+          autocomplete="email"
+          required
+        />
+      </div>
+
+      <div class="login-field">
+        <label for="loginPassword">Password</label>
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="Masukkan password"
+          autocomplete="current-password"
+          required
+        />
+      </div>
+
+      <button type="submit" class="login-button">Masuk</button>
+    </form>
+  </div>
+</section>
