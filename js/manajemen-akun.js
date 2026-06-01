@@ -634,6 +634,13 @@ async function handleToggleAccountStatus(userId) {
       showConfirmButton: false,
     });
   } catch (error) {
+    if (
+      typeof isSessionErrorMessage === "function" &&
+      isSessionErrorMessage(error.message)
+    ) {
+      return;
+    }
+
     Swal.fire({
       icon: "error",
       title: nextStatus
