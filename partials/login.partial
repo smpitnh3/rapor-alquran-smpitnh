@@ -23,13 +23,41 @@
 
       <div class="login-field">
         <label for="loginPassword">Password</label>
-        <input
-          id="loginPassword"
-          type="password"
-          placeholder="Masukkan password"
-          autocomplete="current-password"
-          required
-        />
+
+        <div class="login-password-wrapper">
+          <input
+            id="loginPassword"
+            type="password"
+            placeholder="Masukkan password"
+            autocomplete="current-password"
+            required
+          />
+
+          <button
+            id="toggleLoginPassword"
+            class="login-password-toggle"
+            type="button"
+            aria-label="Tampilkan password"
+            aria-pressed="false"
+          >
+            <span class="login-eye-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.8"
+                  d="M2.25 12s3.75-6.75 9.75-6.75S21.75 12 21.75 12 18 18.75 12 18.75 2.25 12 2.25 12Z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.8"
+                  d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
       </div>
 
       <button type="submit" class="login-button">Masuk</button>
