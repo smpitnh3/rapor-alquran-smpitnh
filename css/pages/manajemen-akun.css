@@ -30,6 +30,46 @@
   gap: 12px;
 }
 
+.account-password-wrapper {
+  position: relative;
+}
+
+.account-password-wrapper input {
+  padding-right: 48px;
+}
+
+.account-password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted-strong, #64748b);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.account-password-toggle:hover {
+  background: var(--surface-soft);
+  color: var(--brand-green);
+}
+
+.account-eye-icon,
+.account-eye-icon svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
 .account-check-card {
   display: flex;
   align-items: flex-start;
