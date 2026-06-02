@@ -4,7 +4,7 @@
    - Menampilkan daftar akun.
    - Tambah akun baru.
    - Edit akun.
-   - Nonaktifkan akun.
+   - Aktifkan / nonaktifkan akun.
    - Khusus admin.
 ========================================================= */
 
@@ -48,6 +48,12 @@ function normalizeUserStatus(user) {
   return isTruthyValue(user?.isActive);
 }
 
+function getAccountById(userId) {
+  return DB.users.find((user) => {
+    return user.id === userId;
+  });
+}
+
 function getUserClassLabel(user) {
   const classItem = DB.classes.find((item) => {
     return item.id === user?.classId;
@@ -62,12 +68,6 @@ function getUserHalaqohLabel(user) {
   });
 
   return getHalaqohLabel(halaqoh);
-}
-
-function getAccountById(userId) {
-  return DB.users.find((user) => {
-    return user.id === userId;
-  });
 }
 
 function getAccountPermissionBadges(user) {
@@ -108,12 +108,8 @@ function getFilteredAccounts() {
 
     const matchKeyword =
       !keyword ||
-      String(user.name || "")
-        .toLowerCase()
-        .includes(keyword) ||
-      String(user.email || "")
-        .toLowerCase()
-        .includes(keyword);
+      String(user.name || "").toLowerCase().includes(keyword) ||
+      String(user.email || "").toLowerCase().includes(keyword);
 
     return matchRole && matchStatus && matchKeyword;
   });
@@ -297,6 +293,7 @@ function resetAccountForm() {
   populateAccountClassOptions();
   populateAccountHalaqohOptions();
   toggleAccountTeacherFields();
+  resetAccountPasswordVisibility();
 }
 
 function openAccountModal(userId = "") {
@@ -321,6 +318,7 @@ function openAccountModal(userId = "") {
     accountPageState.editingUserId = userId;
 
     if (title) title.textContent = "Edit Akun";
+
     if (subtitle) {
       subtitle.textContent =
         "Perbarui data akun. Kosongkan password jika tidak ingin mengganti password.";
@@ -361,6 +359,7 @@ function openAccountModal(userId = "") {
     }
   } else {
     if (title) title.textContent = "Tambah Akun";
+
     if (subtitle) {
       subtitle.textContent = "Buat akun baru untuk admin atau guru.";
     }
@@ -369,6 +368,7 @@ function openAccountModal(userId = "") {
   }
 
   toggleAccountTeacherFields();
+  resetAccountPasswordVisibility();
 
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
@@ -385,6 +385,103 @@ function closeAccountModal() {
   document.body.classList.remove("modal-open");
 
   resetAccountForm();
+}
+
+/* =========================================================
+   PASSWORD VISIBILITY
+========================================================= */
+
+function getAccountEyeIcon() {
+  return `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.8"
+        d="M2.25 12s3.75-6.75 9.75-6.75S21.75 12 21.75 12 18 18.75 12 18.75 2.25 12 2.25 12Z"
+      />
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.8"
+        d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+      />
+    </svg>
+  `;
+}
+
+function getAccountEyeOffIcon() {
+  return `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.8"
+        d="M3 3l18 18"
+      />
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.8"
+        d="M10.58 10.58A2 2 0 0 0 13.42 13.42"
+      />
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.8"
+        d="M9.88 5.42A9.77 9.77 0 0 1 12 5.25c6 0 9.75 6.75 9.75 6.75a16.32 16.32 0 0 1-3.15 3.84"
+      />
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.8"
+        d="M6.53 6.53C3.75 8.45 2.25 12 2.25 12S6 18.75 12 18.75c1.42 0 2.74-.37 3.93-.95"
+      />
+    </svg>
+  `;
+}
+
+function setAccountPasswordVisible(isVisible) {
+  const passwordInput = document.querySelector("#accountPassword");
+  const toggleButton = document.querySelector("#toggleAccountPassword");
+  const iconContainer = toggleButton?.querySelector(".account-eye-icon");
+
+  if (!passwordInput || !toggleButton || !iconContainer) return;
+
+  passwordInput.type = isVisible ? "text" : "password";
+
+  toggleButton.setAttribute("aria-pressed", String(isVisible));
+  toggleButton.setAttribute(
+    "aria-label",
+    isVisible ? "Sembunyikan password" : "Tampilkan password"
+  );
+
+  iconContainer.innerHTML = isVisible
+    ? getAccountEyeOffIcon()
+    : getAccountEyeIcon();
+}
+
+function resetAccountPasswordVisibility() {
+  setAccountPasswordVisible(false);
+}
+
+function initAccountPasswordToggle() {
+  const passwordInput = document.querySelector("#accountPassword");
+  const toggleButton = document.querySelector("#toggleAccountPassword");
+
+  if (!passwordInput || !toggleButton) return;
+  if (toggleButton.dataset.initialized === "true") return;
+
+  toggleButton.dataset.initialized = "true";
+
+  toggleButton.addEventListener("click", () => {
+    const isVisible = passwordInput.type === "text";
+
+    setAccountPasswordVisible(!isVisible);
+    passwordInput.focus();
+  });
+
+  resetAccountPasswordVisibility();
 }
 
 /* =========================================================
@@ -474,7 +571,7 @@ function validateAccountPayload(payload) {
 }
 
 /* =========================================================
-   SAVE / DELETE
+   SAVE / STATUS
 ========================================================= */
 
 function upsertUserLocal(user) {
@@ -551,6 +648,13 @@ async function handleSaveAccount(event) {
       showConfirmButton: false,
     });
   } catch (error) {
+    if (
+      typeof isSessionErrorMessage === "function" &&
+      isSessionErrorMessage(error.message)
+    ) {
+      return;
+    }
+
     Swal.fire({
       icon: "error",
       title: "Gagal menyimpan akun",
@@ -657,6 +761,7 @@ async function handleToggleAccountStatus(userId) {
 
 function initAccountManagementPage() {
   if (accountPageInitialized) return;
+  if (!getEl('[data-view="akun"]')) return;
 
   accountPageInitialized = true;
 
@@ -672,10 +777,9 @@ function initAccountManagementPage() {
   const classSelect = getEl("#accountClassId");
   const tableBody = getEl("#accountTableBody");
 
-  if (!getEl('[data-view="akun"]')) return;
-
   populateAccountClassOptions();
   populateAccountHalaqohOptions();
+  initAccountPasswordToggle();
   renderAccountPage();
 
   openButton?.addEventListener("click", () => {
